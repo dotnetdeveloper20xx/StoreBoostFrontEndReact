@@ -1,6 +1,7 @@
 # 📘 StoreBoost API Integration Guide for Front-End Team
 
-This guide provides detailed information for consuming the appointment booking endpoints from the front end.
+Welcome to the StoreBoost API! This guide provides detailed information for consuming the appointment booking endpoints from the front end.
+
 ---
 
 ## ✅ Base URL
