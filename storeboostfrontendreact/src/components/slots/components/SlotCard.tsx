@@ -1,6 +1,6 @@
 // src/features/slots/components/SlotCard.tsx
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import type { Slot } from "@/features/slots/api/slotApi";
 
 interface Props {

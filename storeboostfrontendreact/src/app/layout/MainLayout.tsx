@@ -1,22 +1,16 @@
-import Navbar from "@/components/Navbar";
-import { Outlet } from "react-router-dom";
-
+import { Outlet } from "react-router-dom"
+import Topbar from "@/components/Topbar"
 
 export default function MainLayout() {
   return (
-    <div className='min-h-screen flex flex-col bg-gray-50 text-gray-900'>
-      {/* Top Navigation */}
-      <Navbar />
+    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+      {/* Top Bar */}
+      <Topbar />
 
       {/* Main Content */}
-      <main className='flex-1 container mx-auto px-4 py-6'>
+      <main className="flex-1 w-full px-6 py-10 max-w-7xl mx-auto">
         <Outlet />
       </main>
-
-      {/* Optional Footer */}
-      {/* <footer className="text-center text-sm py-4 text-gray-400">
-        &copy; 2025 StoreBoost. All rights reserved.
-      </footer> */}
     </div>
-  );
+  )
 }
