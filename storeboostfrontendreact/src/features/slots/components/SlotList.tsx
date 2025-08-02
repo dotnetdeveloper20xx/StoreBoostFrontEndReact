@@ -3,7 +3,8 @@
 
 import React, { useEffect, useState } from "react";
 import { fetchAllSlots } from "../api/slots";
-import SlotCard from "./SlotCard";
+import SlotCard from "@/components/slots/components/SlotCard";
+
 
 
 interface Slot {

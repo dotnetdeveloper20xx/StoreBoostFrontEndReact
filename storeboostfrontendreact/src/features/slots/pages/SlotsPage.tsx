@@ -2,9 +2,14 @@ import SlotCard from "@/components/slots/components/SlotCard";
 import { useGetAvailableSlotsQuery } from "../api/slotApi";
 
 export default function SlotsPage() {
-  const { data, isLoading, isError } = useGetAvailableSlotsQuery();
+  const {
+    data,
+    isLoading,
+    isError,
+    refetch, // ✅ <- this is what we'll use
+  } = useGetAvailableSlotsQuery();
 
-  // Safely extract the actual array of slots
+  // Extract the slots array safely
   const slots = Array.isArray(data)
     ? data
     : Array.isArray(data?.data)
@@ -30,7 +35,7 @@ export default function SlotsPage() {
       <h1 className='text-2xl font-semibold mb-6'>Available Slots</h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
         {slots.map((slot) => (
-          <SlotCard key={slot.id} slot={slot} />
+          <SlotCard key={slot.id} slot={slot} onAction={refetch} />
         ))}
       </div>
     </section>

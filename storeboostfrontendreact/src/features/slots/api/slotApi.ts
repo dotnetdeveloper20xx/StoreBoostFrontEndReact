@@ -9,27 +9,45 @@ export interface Slot {
   isBooked: boolean;
 }
 
+export interface ApiResponse {
+  success: boolean;
+  message: string;
+  data?: any;
+}
+
 export const slotApi = createApi({
   reducerPath: "slotApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://localhost:7009/api",
   }),
-  tagTypes: ["Slot"], // optional: helps with cache invalidation later
+  tagTypes: ["Slot"],
   endpoints: (builder) => ({
     getAvailableSlots: builder.query<Slot[], void>({
       query: () => "slots/available",
       providesTags: ["Slot"],
     }),
 
-    // Optional future enhancement:
-    // bookSlot: builder.mutation<boolean, string>({
-    //   query: (slotId) => ({
-    //     url: `slots/${slotId}/book`,
-    //     method: "POST",
-    //   }),
-    //   invalidatesTags: ["Slot"],
-    // }),
+    bookSlot: builder.mutation<ApiResponse, string>({
+      query: (slotId) => ({
+        url: `slots/${slotId}/book`,
+        method: "POST",
+      }),
+      invalidatesTags: ["Slot"],
+    }),
+
+    cancelSlot: builder.mutation<ApiResponse, string>({
+      query: (slotId) => ({
+        url: `slots/${slotId}/cancel`,
+        method: "POST",
+      }),
+      invalidatesTags: ["Slot"],
+    }),
   }),
 });
 
-export const { useGetAvailableSlotsQuery } = slotApi;
+// ✅ Export RTK hooks
+export const {
+  useGetAvailableSlotsQuery,
+  useBookSlotMutation,
+  useCancelSlotMutation,
+} = slotApi;
