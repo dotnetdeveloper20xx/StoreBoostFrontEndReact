@@ -1,9 +1,15 @@
 import SlotCard from "@/components/slots/components/SlotCard";
 import { useGetAvailableSlotsQuery } from "../api/slotApi";
 
-
 export default function SlotsPage() {
-  const { data: slots = [], isLoading, isError } = useGetAvailableSlotsQuery();
+  const { data, isLoading, isError } = useGetAvailableSlotsQuery();
+
+  // Safely extract the actual array of slots
+  const slots = Array.isArray(data)
+    ? data
+    : Array.isArray(data?.data)
+    ? data.data
+    : [];
 
   if (isLoading) {
     return <p className='text-center mt-10'>Loading slots...</p>;
